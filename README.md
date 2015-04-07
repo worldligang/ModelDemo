@@ -8,54 +8,54 @@
 
 LGObject.h：
     
- //
-//  LGObject.h
-//  LGAlertViewDemo
-//
-//  Created by apple on 15/4/6.
-//  Copyright (c) 2015年 LiGang. All rights reserved.
-//
-
-#import <Foundation/Foundation.h>
-
-@interface LGObject : NSObject
-
-@property (readonly, nonatomic) id data;
-
-- (id)initWithData:(id)data;
-- (BOOL)isEmpty;
-
-@end
+	 //
+	//  LGObject.h
+	//  LGAlertViewDemo
+	//
+	//  Created by apple on 15/4/6.
+	//  Copyright (c) 2015年 LiGang. All rights reserved.
+	//
+	
+	#import <Foundation/Foundation.h>
+	
+	@interface LGObject : NSObject
+	
+	@property (readonly, nonatomic) id data;
+	
+	- (id)initWithData:(id)data;
+	- (BOOL)isEmpty;
+	
+	@end
 
 LGObject.m：
 
-//
-//  LGObject.m
-//  LGAlertViewDemo
-//
-//  Created by apple on 15/4/6.
-//  Copyright (c) 2015年 LiGang. All rights reserved.
-//
-
-#import "LGObject.h"
-
-@implementation LGObject
-
-- (id)initWithData:(id)data {
-    self = [super init];
-    if(self) {
-        _data = nil;
-        if(data != nil) _data = data;
-    }
-    return self;
-}
-
-- (BOOL)isEmpty
-{
-    return _data == nil ? YES : NO;
-}
-
-@end
+	//
+	//  LGObject.m
+	//  LGAlertViewDemo
+	//
+	//  Created by apple on 15/4/6.
+	//  Copyright (c) 2015年 LiGang. All rights reserved.
+	//
+	
+	#import "LGObject.h"
+	
+	@implementation LGObject
+	
+	- (id)initWithData:(id)data {
+	    self = [super init];
+	    if(self) {
+	        _data = nil;
+	        if(data != nil) _data = data;
+	    }
+	    return self;
+	}
+	
+	- (BOOL)isEmpty
+	{
+	    return _data == nil ? YES : NO;
+	}
+	
+	@end
 
 ###定义房子LGHouse、电视LGVideo、桌子LGDesk
 
@@ -63,92 +63,92 @@ LGObject.m：
 
 LGHouse.h：
 
-//
-//  LGHouse.h
-//  LGAlertViewDemo
-//
-//  Created by apple on 15/4/6.
-//  Copyright (c) 2015年 LiGang. All rights reserved.
-//
-
-#import "LGObject.h"
-
-@class LGVideo;
-@class LGDesk;
-
-@interface LGHouse : LGObject
-
-@property (nonatomic, readonly) LGVideo  *video;     //电视
-@property (nonatomic, readonly) NSArray  *arrayDesk; //桌子
-
-@end
-
-@interface LGVideo : LGObject
-
-@property (nonatomic, assign)   float      money;//价格
-@property (nonatomic, readonly) NSString  *type;//型号
-
-@end
-
-@interface LGDesk : LGObject
-
-@property (nonatomic, assign)   float      money;//价格
-@property (nonatomic, readonly) NSString  *type;//型号
-
-@end
+	//
+	//  LGHouse.h
+	//  LGAlertViewDemo
+	//
+	//  Created by apple on 15/4/6.
+	//  Copyright (c) 2015年 LiGang. All rights reserved.
+	//
+	
+	#import "LGObject.h"
+	
+	@class LGVideo;
+	@class LGDesk;
+	
+	@interface LGHouse : LGObject
+	
+	@property (nonatomic, readonly) LGVideo  *video;     //电视
+	@property (nonatomic, readonly) NSArray  *arrayDesk; //桌子
+	
+	@end
+	
+	@interface LGVideo : LGObject
+	
+	@property (nonatomic, assign)   float      money;//价格
+	@property (nonatomic, readonly) NSString  *type;//型号
+	
+	@end
+	
+	@interface LGDesk : LGObject
+	
+	@property (nonatomic, assign)   float      money;//价格
+	@property (nonatomic, readonly) NSString  *type;//型号
+	
+	@end
 
 
 LGHouse.m：
 
-//
-//  LGHouse.m
-//  LGAlertViewDemo
-//
-//  Created by apple on 15/4/6.
-//  Copyright (c) 2015年 LiGang. All rights reserved.
-//
-
-#import "LGHouse.h"
-
-@implementation LGHouse
-
-- (LGVideo *)video {
-    return [[LGVideo alloc] initWithData:[self.data objectForKey:@"video"]];
-}
-
-- (NSArray *)arrayDesk {
-    NSMutableArray *arrayDesk = [NSMutableArray array];
-    for (NSDictionary *dickDesk in [self.data objectForKey:@"desks"]) {
-        [arrayDesk addObject:[[LGDesk alloc] initWithData:dickDesk]];
-    }
-    return arrayDesk;
-}
-
-@end
-
-@implementation LGVideo
-
-- (float)money {
-    return [[self.data objectForKey:@"money"] floatValue];
-}
-
-- (NSString *)type {
-    return [self.data objectForKey:@"type"];
-}
-
-@end
-
-@implementation LGDesk
-
-- (float)money {
-    return [[self.data objectForKey:@"money"] floatValue];
-}
-
-- (NSString *)type {
-    return [self.data objectForKey:@"type"];
-}
-
-@end
+	//
+	//  LGHouse.m
+	//  LGAlertViewDemo
+	//
+	//  Created by apple on 15/4/6.
+	//  Copyright (c) 2015年 LiGang. All rights reserved.
+	//
+	
+	#import "LGHouse.h"
+	
+	@implementation LGHouse
+	
+	- (LGVideo *)video {
+	    return [[LGVideo alloc] initWithData:[self.data objectForKey:@"video"]];
+	}
+	
+	- (NSArray *)arrayDesk {
+	    NSMutableArray *arrayDesk = [NSMutableArray array];
+	    for (NSDictionary *dickDesk in [self.data objectForKey:@"desks"]) {
+	        [arrayDesk addObject:[[LGDesk alloc] initWithData:dickDesk]];
+	    }
+	    return arrayDesk;
+	}
+	
+	@end
+	
+	@implementation LGVideo
+	
+	- (float)money {
+	    return [[self.data objectForKey:@"money"] floatValue];
+	}
+	
+	- (NSString *)type {
+	    return [self.data objectForKey:@"type"];
+	}
+	
+	@end
+	
+	@implementation LGDesk
+	
+	- (float)money {
+	    return [[self.data objectForKey:@"money"] floatValue];
+	}
+	
+	- (NSString *)type {
+	    return [self.data objectForKey:@"type"];
+	}
+	
+	@end
 
 以上是我对Model设计的简单理解，如果你有更好的想法，欢迎告诉我。
      
